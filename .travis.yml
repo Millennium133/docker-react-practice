@@ -5,20 +5,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t millennium/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t millennium133/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true millennium/react-test npm test
+  - docker run -e CI=true millennium133/react-test npm test
 
 after_success:
-  - docker build -t millennium/multi-client ./client
-  - docker build -t millennium/multi-nginx ./nginx
-  - docker build -t millennium/multi-server ./server
-  - docker build -t millennium/multi-worker ./worker
+  - docker build -t millennium133/multi-client ./client
+  - docker build -t millennium133/multi-nginx ./nginx
+  - docker build -t millennium133/multi-server ./server
+  - docker build -t millennium133/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push millennium/multi-client
-  - docker push millennium/multi-nginx
-  - docker push millennium/multi-server
-  - docker push millennium/multi-worker
+  - docker push millennium133/multi-client
+  - docker push millennium133/multi-nginx
+  - docker push millennium133/multi-server
+  - docker push millennium133/multi-worker
