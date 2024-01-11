@@ -22,3 +22,15 @@ after_success:
   - docker push millennium133/multi-nginx
   - docker push millennium133/multi-server
   - docker push millennium133/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'ap-southeast-2'
+  app: 'multi-docker'
+  env: 'Multi-Docker-env'
+  bucket_name: 'elasticbeanstalk-ap-southeast-2-654654145031'
+  bucket_path: 'docker-multi'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
